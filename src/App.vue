@@ -1,47 +1,59 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import Header from './components/Header.vue';
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div id="app">
+    <Header />
+    <main class="content">
+      <router-view></router-view>
+    </main>
+    
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+:root{
+    --main-color:#904bff;
+    --black:#13131a;
+    --bg:#010103;
+    --border:.1rem solid rgba(255, 255, 255, 0.3);
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+*{
+    font-family: 'Roboto', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; border:none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+#app {
+  overflow-x: hidden; /* prevent horizontal scrolling */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the app takes full viewport height */
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.content {
+  flex: 1; /* Allow content to grow and take up available space */
+  
+  padding-bottom: 20px; /* Space between content and footer */
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+Header, Footer {
+    position: relative; /* or absolute, depending on your layout */
+    z-index: 2; /* ensure the header and footer are in front of the popup */
+}
+
+footer {
+  margin-top: auto; /* Push the footer to the bottom */
+  z-index: 2; /* Ensure the footer is on top */
 }
 </style>
