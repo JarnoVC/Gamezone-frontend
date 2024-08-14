@@ -36,7 +36,7 @@ import Header from './components/Header.vue';
 
 .content {
   flex: 1; /* Allow content to grow and take up available space */
-  
+  padding-top: 2rem;
   padding-bottom: 20px; /* Space between content and footer */
 }
 
