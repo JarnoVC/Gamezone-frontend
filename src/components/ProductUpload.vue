@@ -1,6 +1,8 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 import axios from 'axios';
+import {createProduct}  from '../../apiConnection';
+import apiConnection from '../../apiConnection';
 
 // Form state
 const productName = ref('');
@@ -8,37 +10,39 @@ const productDescription = ref('');
 const productPrice = ref('');
 const productImage = ref(null);
 
+const formData = reactive({
+
+title: '',
+description: '',
+price: '',
+image: null,
+    // Add other form fields here
+}); console.log('formData:', formData);
+
 // Function to handle form submission
 const handleFormSubmit = async () => {
-  const formData = new FormData();
-  formData.append('name', productName.value);
-  formData.append('description', productDescription.value);
-  formData.append('price', productPrice.value);
-  if (productImage.value) {
-    formData.append('image', productImage.value);
-  }
+    try {
+        // Call the createAssortment function from apiService.js and pass formData.value
 
-  // Here you would send the formData to your back end using fetch or axios
-  console.log('Product uploaded:', formData);
+        const response = await createProduct(formData);
+        console.log('Product created successfully:', response);
 
-  try {
-    const response = await axios.post('http://localhost:3000/api/v1/products', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+        console.log('Product created successfully:', formData.value);
 
-    console.log('Product uploaded:', response.data);
-    alert('Product uploaded successfully!');
-    // Optionally, clear the form fields after successful submission
-    productName.value = '';
-    productDescription.value = '';
-    productPrice.value = '';
-    productImage.value = null;
-  } catch (error) {
-    console.error('Error uploading product:', error);
-    alert('Failed to upload product.');
-  }
+        // Clear the form after successful submission
+        formData.value = {
+            title: '',
+            description: '',
+            price: '',
+            image: null,
+            // Reset other form fields if needed
+        };
+        } catch (error) {
+        console.log('tried to upload:', formData);
+        console.error('Error creating assortment:', error);
+        alert('Product uploaded successfully!');
+        // Handle error if needed
+    }
 };
 </script>
 
@@ -49,17 +53,17 @@ const handleFormSubmit = async () => {
       <form @submit.prevent="handleFormSubmit">
         <div class="form-group">
           <label for="product-name">Product Name</label>
-          <input type="text" id="product-name" v-model="productName" required />
+          <input type="text" id="product-name" v-model="formData.title" required />
         </div>
 
         <div class="form-group">
           <label for="product-description">Product Description</label>
-          <textarea id="product-description" v-model="productDescription" required></textarea>
+          <textarea id="product-description" v-model="formData.description" required></textarea>
         </div>
 
         <div class="form-group">
           <label for="product-price">Product Price</label>
-          <input type="number" id="product-price" v-model="productPrice" required />
+          <input type="number" id="product-price" v-model="formData.price" required />
         </div>
 
         <div class="form-group">
