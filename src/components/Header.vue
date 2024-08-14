@@ -34,7 +34,7 @@
     padding:.9rem 3rem;
     font-size: 1.7rem;
     color:#fff;
-    background: var(--main-color);
+    background: #904bff;
     cursor: pointer;
 }
 
@@ -48,16 +48,15 @@
 }
 
 .header{
-    background: var(--bg);
+    background: #010103;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding:1.5rem 7%;
-    border-bottom: var(--border);
+    border-bottom: .1rem solid rgba(255, 255, 255, 0.3);
     position: fixed;
     top:0; left: 0; right: 0;
     z-index: 1000;
-    background-color: black;
 }
 
 .header .logo img{
@@ -71,8 +70,8 @@
 }
 
 .header .navbar a:hover{
-    color:var(--main-color);
-    border-bottom: .1rem solid var(--main-color);
+    color:#904bff;
+    border-bottom: .1rem solid #904bff;
     padding-bottom: .5rem;
 }
 
@@ -84,7 +83,7 @@
 }
 
 .header .icons div:hover{
-    color:var(--main-color);
+    color:#904bff;
 }
 
 #menu-btn{
