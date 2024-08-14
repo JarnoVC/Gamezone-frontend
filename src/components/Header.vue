@@ -13,9 +13,9 @@
     <router-link to="/"><a href="">home</a></router-link> 
     <a href="#about">about</a>
     <router-link to="/sell"><a href="">post</a></router-link> 
-    <a href="#products">products</a>
-    <a href="#review">review</a>
-    <a href="#contact">contact</a>
+    <router-link to="/list"><a href="">products</a></router-link> 
+    <router-link to="/signup"><a href="">Signup</a></router-link> 
+    <router-link to="/login"><a href="">Login</a></router-link> 
 </nav>
 
 <div class="icons">
