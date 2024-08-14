@@ -28,5 +28,10 @@ export async function createProduct(ProductData) {
 
 
 export default {
- 
+    fetchData() {
+      //return apiClient.get('/api/v1/two');
+      return apiClient2.get('/api/v1/products');
+    }
+   
 };
+  
