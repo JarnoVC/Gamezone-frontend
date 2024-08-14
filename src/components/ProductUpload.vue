@@ -4,12 +4,6 @@ import axios from 'axios';
 import {createProduct}  from '../../apiConnection';
 import apiConnection from '../../apiConnection';
 
-// Form state
-const productName = ref('');
-const productDescription = ref('');
-const productPrice = ref('');
-const productImage = ref(null);
-
 const formData = reactive({
 
 title: '',
@@ -30,17 +24,15 @@ const handleFormSubmit = async () => {
         console.log('Product created successfully:', formData.value);
 
         // Clear the form after successful submission
-        formData.value = {
-            title: '',
-            description: '',
-            price: '',
-            image: null,
-            // Reset other form fields if needed
-        };
+        formData.title = '';
+        formData.description = '';
+        formData.price = '';
+        formData.image = null;
+        alert('Product uploaded successfully!');
         } catch (error) {
         console.log('tried to upload:', formData);
         console.error('Error creating assortment:', error);
-        alert('Product uploaded successfully!');
+        
         // Handle error if needed
     }
 };
@@ -68,7 +60,7 @@ const handleFormSubmit = async () => {
 
         <div class="form-group">
           <label for="product-image">Product Image</label>
-          <input type="file" id="product-image" @change="event => productImage.value = event.target.files[0]" />
+          <input type="file" id="product-image" @change="event => formData.image.value = event.target.files[0]" />
         </div>
 
         <button type="submit" class="btn">Submit</button>
