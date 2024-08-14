@@ -1,13 +1,15 @@
 import './assets/main.css'
 
 import landingspage from './components/landingspagina.vue'
+import ProductUpload from './components/ProductUpload.vue'; 
 
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue'
 
 const routes = [
-    { path: '/', component: landingspage, name: 'landing', meta: { requiresAuth: false } },
+    { path: '/', component: landingspage, name: 'home', meta: { requiresAuth: false } },
+    { path: '/sell', component: ProductUpload, name: 'sell', meta: { requiresAuth: false } },
     
 ]
 

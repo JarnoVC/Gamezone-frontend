@@ -6,13 +6,13 @@
   <header class="header">
 
 <a href="#" class="logo">
-    <h1>GAMEZONE</h1>
+    <router-link to="/"><h1>GAMEZONE</h1></router-link> 
 </a>
 
 <nav class="navbar">
-    <a href="#home">home</a>
+    <router-link to="/"><a href="">home</a></router-link> 
     <a href="#about">about</a>
-    <a href="#menu">menu</a>
+    <router-link to="/sell"><a href="">post</a></router-link> 
     <a href="#products">products</a>
     <a href="#review">review</a>
     <a href="#contact">contact</a>
@@ -60,7 +60,7 @@
 }
 
 .header .logo img{
-    height: 6rem;
+    height: 4rem;
 }
 
 .header .navbar a{
