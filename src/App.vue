@@ -1,6 +1,5 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { RouterLink } from 'vue-router';
 import Header from './components/Header.vue';
 </script>
 
@@ -17,12 +16,6 @@ import Header from './components/Header.vue';
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 
-:root{
-    --main-color:#904bff;
-    --black:#13131a;
-    --bg:#010103;
-    --border:.1rem solid rgba(255, 255, 255, 0.3);
-}
 
 *{
     font-family: 'Roboto', sans-serif;
