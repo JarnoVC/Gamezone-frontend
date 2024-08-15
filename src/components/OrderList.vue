@@ -2,7 +2,7 @@
   import { ref, reactive ,computed, onMounted, onUnmounted, watch } from 'vue';
   import OrderCard from './OrderCard.vue';
   import apiConnection from '../../apiConnection';
-  import { fetchOrderCount }  from '../../apiConnection';
+  import socket from '../../socket';
 
   
   
@@ -38,6 +38,17 @@ onMounted(() => {
       updateOrderCount(); // Update the order count after fetching orders
 
     });
+    // Listen for order updates via Socket.io
+  socket.on('orderUpdated', (updatedOrder) => {
+    // Logic to update the orders array
+    const index = orders.value.findIndex(order => order._id === updatedOrder._id);
+    if (index !== -1) {
+      orders.value[index] = updatedOrder;
+    } else {
+      orders.value.push(updatedOrder);
+    }
+    updateOrderCount(); // Update the count
+  });
   });
 
 fetchOrders();
