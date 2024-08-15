@@ -1,5 +1,19 @@
 <script setup>
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
+const store = useStore();
+const router = useRouter();
+
+// Get the logged-in state
+const isLoggedIn = computed(() => store.getters.isLoggedIn);
+
+// Handle logout
+const logout = () => {
+  store.dispatch('logout');
+  router.push('/login'); // Redirect to login page after logout
+};
 </script>
 
 <template>
@@ -11,11 +25,11 @@
 
 <nav class="navbar">
     <router-link to="/"><a href="">home</a></router-link> 
-    <a href="#about">about</a>
+    <a v-if="isLoggedIn" @click="logout" href="">Logout</a>
     <router-link to="/sell"><a href="">post</a></router-link> 
     <router-link to="/list"><a href="">products</a></router-link> 
-    <router-link to="/signup"><a href="">Signup</a></router-link> 
-    <router-link to="/login"><a href="">Login</a></router-link> 
+    <router-link to="/signup"><a v-if="!isLoggedIn" href="">Signup</a></router-link> 
+    <router-link to="/login"><a v-if="!isLoggedIn" href="">Login</a></router-link> 
 </nav>
 
 <div class="icons">
