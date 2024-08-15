@@ -2,6 +2,6 @@
 import { io } from 'socket.io-client';
 
 // Create a Socket.io instance
-const socket = io('http://localhost:3000'); // Replace with your server's URL
+const socket = io('https://gamezone-api.onrender.com/'); // Replace with your server's URL
 
 export default socket;
