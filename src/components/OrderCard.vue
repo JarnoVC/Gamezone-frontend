@@ -57,6 +57,10 @@ const buttonClass = computed(() => {
   border-radius: 4px;
   padding: 1rem;
   margin-bottom: 1rem;
+  width: 20rem;
+  display: flex;
+  flex-direction: column; /* Flexbox column layout */
+  justify-content: space-between; /* Space between elements */
 }
 
 .order-card h2 {
@@ -74,6 +78,7 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  align-self: flex-end; /* Align the button to the right */
 }
 
 .btn-unshipped {
