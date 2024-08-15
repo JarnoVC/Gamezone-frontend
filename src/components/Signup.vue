@@ -40,6 +40,7 @@
 .auth {
 text-align: center;
 padding: 2rem;
+padding-top: 10rem;
 }
 
 .auth h2 {
