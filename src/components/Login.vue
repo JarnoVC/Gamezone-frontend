@@ -12,7 +12,7 @@
   const handleLogin = async () => {
     try {
       await store.dispatch('login', { email: email.value, password: password.value });
-      router.push('/products'); // Redirect after successful login
+      router.push('/'); // Redirect after successful login
     } catch (error) {
       alert('Login failed.');
     }
