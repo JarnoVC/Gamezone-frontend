@@ -13,7 +13,7 @@
   const handleSignup = async () => {
     try {
       await store.dispatch('signup', { username: username.value, email: email.value, password: password.value });
-      router.push('/products'); // Redirect after successful signup
+      router.push('/'); // Redirect after successful signup
     } catch (error) {
       alert('Signup failed.');
     }
