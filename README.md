@@ -41,7 +41,7 @@ To set up the project locally, follow these steps:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/gamezone-frontend.git
+git clone https://github.com/JarnoVC/Gamezone-frontend.git
 cd gamezone-frontend
 ```
 
@@ -108,8 +108,7 @@ src/
 
 ## Recommended IDE Setup
 
-- **[VSCode](https://code.visualstudio.com/)** with:
-  - [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur)
+- **[VSCode](https://code.visualstudio.com/)** 
 
 ## Contributing
 
