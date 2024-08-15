@@ -25,13 +25,17 @@
 
 fetchData();
 
+const removeProduct = (productId) => {
+  products.value = products.value.filter(product => product._id !== productId);
+};
+
 </script>
 
 <template>
     <section class="product-list">
       <h2>Our Products</h2>
       <div class="products-container">
-        <ProductCard v-for="product in products" :key="product._id" :product="product" />
+        <ProductCard v-for="product in products" :key="product._id" :product="product" @productDeleted="removeProduct"/>
       </div>
     </section>
 </template>
