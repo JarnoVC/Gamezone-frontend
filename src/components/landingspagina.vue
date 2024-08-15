@@ -9,7 +9,7 @@
     <div class="content">
         <h3>The future of gaming</h3>
         <p>Level Up Your Game. Discover the latest gear and exclusive deals, all in one place. Ready to conquer?</p>
-        <a href="#" class="btn">Getting Start</a>
+        <router-link to="/list"><a href="#" class="btn">Getting Started</a></router-link>
     </div>
 
 </section>
