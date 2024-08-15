@@ -27,9 +27,9 @@ const logout = () => {
     <router-link to="/"><a href="">home</a></router-link> 
     <router-link to="/sell"><a href="">post</a></router-link> 
     <router-link to="/list"><a href="">products</a></router-link>
-    <router-link to="/orders"><a href="">orders</a></router-link> 
-    <router-link to="/signup"><a v-if="!isLoggedIn" href="">Signup</a></router-link> 
-    <router-link to="/login"><a v-if="!isLoggedIn" href="">Login</a></router-link>
+    <router-link to="/orders" v-if="isLoggedIn"><a href="" >orders</a></router-link> 
+    <router-link to="/signup" v-if="!isLoggedIn"><a  href="">Signup</a></router-link> 
+    <router-link to="/login" v-if="!isLoggedIn"><a  href="">Login</a></router-link>
     <a v-if="isLoggedIn" @click="logout" href="">Logout</a>
 </nav>
 
