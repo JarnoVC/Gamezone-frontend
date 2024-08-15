@@ -43,38 +43,64 @@ const removeProduct = (productId) => {
   
   
 <style scoped>
-  .product-list {
-    padding: 10rem;
-    text-align: center;
+.product-list {
+  padding: 2rem;
+  text-align: center;
+}
+
+.product-list h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* Flex item sizing */
+.product-card {
+  flex: 1 1 calc(33.333% - 1.5rem); /* Three items per row with gap considered */
+  max-width: calc(33.333% - 1.5rem);
+  box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .product-card {
+    flex: 1 1 calc(50% - 1.5rem); /* Two items per row */
+    max-width: calc(50% - 1.5rem);
   }
-  
-  .product-list h2 {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    flex: 1 1 100%; /* One item per row */
+    max-width: 100%;
   }
-  
-  .products-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .product-list {
-      padding: 1rem;
-    }
-  
-    .product-list h2 {
-      font-size: 2rem;
-    }
-  
-    .products-container {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
+}
+
+.product-card img {
+  width: 100%; /* Ensures image takes up the full width of its container */
+  height: auto;
+  display: block;
+  border-radius: 8px; /* Rounded corners for images */
+}
+
+.product-card h3 {
+  margin: 1rem 0;
+}
+
+.product-card p {
+  margin: 0.5rem 0;
+}
+
+.product-card button {
+  margin-top: 1rem;
+}
 </style>
+
   

@@ -55,89 +55,107 @@ const orderProduct = async (productId) => {
 </script>
 
 <template>
-    <div class="product-card" v-if="product">
-      <img :src="product.image" alt="Product Image" v-if="product.image" />
-      <div class="product-info">
-        <h3>{{ product.title }}</h3>
-        <p>{{ product.description }}</p>
-        <p class="price">${{ product.price.toFixed(2) }}</p>
-        <button v-if="isLoggedIn" @click="removeItem(product._id)" class="delete-btn">
-          Delete
-        </button>
-        <button v-if="!isLoggedIn" @click="orderProduct(product._id)" class="bestel-btn">
-          Bestellen
-        </button>
-      </div>
-      
+  <div class="product-card" v-if="product">
+    <img :src="product.image" alt="Product Image" v-if="product.image" />
+    <div class="product-info">
+      <h3>{{ product.title }}</h3>
+      <p>{{ product.description }}</p>
+      <p class="price">${{ product.price.toFixed(2) }}</p>
     </div>
+    <div class="button-container">
+      <button v-if="isLoggedIn" @click="removeItem(product._id)" class="delete-btn">
+        Delete
+      </button>
+      <button v-if="!isLoggedIn" @click="orderProduct(product._id)" class="bestel-btn">
+        Bestellen
+      </button>
+    </div>
+  </div>
 </template>
+
   
 
   
 <style scoped>
-  .product-card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    overflow: hidden;
-    width: 100%;
-    max-width: 300px;
-    margin: 1rem;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .product-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .product-info {
-    padding: 1rem;
-    text-align: center;
-  }
-  
-  .product-info h3 {
-    font-size: 1.5rem;
-    color: #333;
-    margin: 0.5rem 0;
-  }
-  
-  .product-info p {
-    font-size: 1rem;
-    color: #666;
-  }
-  
-  .price {
-    font-size: 1.2rem;
-    color: #904bff;
-    font-weight: bold;
-  }
+.product-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 300px;
+  margin: 1rem;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes content to top and buttons to the bottom */
+  position: relative;
+}
 
-  .delete-btn {
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 1rem;
+  text-align: center;
+  flex: 1; /* Allow product info to expand and push buttons to the bottom */
+}
+
+.product-info h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+.product-info p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.price {
+  font-size: 1.2rem;
+  color: #904bff;
+  font-weight: bold;
+}
+
+/* Container for buttons to ensure they are placed nicely */
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Space out buttons */
+  margin-top: 1rem; /* Space above the buttons */
+}
+
+/* Style for delete button */
+.delete-btn {
   background-color: red;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  position: absolute;
+  flex: 1; /* Allows button to grow */
 }
 
 .delete-btn:hover {
   background-color: darkred;
 }
 
+/* Style for bestel button */
 .bestel-btn {
   background-color: greenyellow;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  position: absolute;
+  flex: 1; /* Allows button to grow */
 }
 
 .bestel-btn:hover {
   background-color: green;
 }
 </style>
+
+
   
