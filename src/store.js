@@ -49,7 +49,7 @@ const store = createStore({
     async login({ commit }, user) {
       try {
         commit('auth_request');
-        const response = await axios.post('http://localhost:3000/api/v1/auth/login', user);
+        const response = await axios.post('https://gamezone-api.onrender.com/api/v1/auth/login', user);
         const token = response.data.token;
         const userData = response.data.user;
 

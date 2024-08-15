@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Zet de basis URL van de API
 const apiClient = axios.create({
-  baseURL: 'https://gamezone-mis8.onrender.com/', // zet hier de webservice url
+  baseURL: 'https://gamezone-api.onrender.com/', // zet hier de webservice url
   headers: {
     'Content-Type': 'application/json',
   },
@@ -18,7 +18,7 @@ const apiClient2 = axios.create({
 
 export async function createProduct(ProductData) {
     try {
-      const response = await apiClient2.post('/api/v1/products', ProductData);
+      const response = await apiClient.post('/api/v1/products', ProductData);
       return response.data;
     } catch (error) {
       throw error;
@@ -27,7 +27,7 @@ export async function createProduct(ProductData) {
 
 export async function deleteProduct(ProductId) {
   try {
-    const response = await apiClient2.delete(`/api/v1/products/${ProductId}`);
+    const response = await apiClient.delete(`/api/v1/products/${ProductId}`);
     return response.data;
 
   } catch (error) {
@@ -38,7 +38,7 @@ export async function deleteProduct(ProductId) {
 
 export async function createOrder(productId, title, description) {
   try {
-    const response = await apiClient2.post('/api/v1/orders', { productId, title, description });
+    const response = await apiClient.post('/api/v1/orders', { productId, title, description });
     return response.data;
   } catch (error) {
     console.error('Error creating order:', error.response?.data || error.message);
@@ -52,7 +52,7 @@ export const updateOrderStatus = async (orderId, newStatus) => {
       if (!orderId) {
           throw new Error('orderId is undefined');
       }
-      const response = await apiClient2.put(`/api/v1/orders/${orderId}/status`, { status: newStatus });
+      const response = await apiClient.put(`/api/v1/orders/${orderId}/status`, { status: newStatus });
       return response.data;
   } catch (error) {
       console.error('Error updating order status:', error);
@@ -62,7 +62,7 @@ export const updateOrderStatus = async (orderId, newStatus) => {
 
 export const fetchOrderCount = async () => {
   try {
-      const response = await apiClient2.get(`/api/v1/orders/count`);
+      const response = await apiClient.get(`/api/v1/orders/count`);
       return response.data;
   } catch (error) {
       console.error('Error fetching order count:', error.response?.data || error.message);
@@ -72,16 +72,16 @@ export const fetchOrderCount = async () => {
 
 export default {
     fetchData() {
-      return apiClient2.get('/api/v1/products');
+      return apiClient.get('/api/v1/products');
     },
     fetchOrders() {
-      return apiClient2.get('/api/v1/orders');
+      return apiClient.get('/api/v1/orders');
     },
     updateOrderStatus(orderId, status) {
-      return apiClient2.put(`/api/v1/orders/${orderId}/status`, { status });
+      return apiClient.put(`/api/v1/orders/${orderId}/status`, { status });
     },
     fetchOrderCount() {
-      return apiClient2.get('/api/v1/orders/count');
+      return apiClient.get('/api/v1/orders/count');
     },
     
    
