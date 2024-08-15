@@ -1,8 +1,57 @@
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, computed, defineEmits, ref  } from 'vue';
+import { useStore } from 'vuex';
+import apiConnection from '../../apiConnection';
+import {deleteProduct, createOrder}  from '../../apiConnection';
+
+import axios from 'axios';
+
+const emit = defineEmits(['productDeleted', 'productOrdered']);
+
+
 const props = defineProps({
   product: Object,
 });
+
+let products = ref([]);
+
+const store = useStore();
+const isLoggedIn = computed(() => store.getters.isLoggedIn);
+
+
+
+const removeItem = async (id) => {
+    const productID = id;
+    const itemIndex = products.value.findIndex(item => item.id === id);
+
+    console.log("product id", productID);
+    try {
+        const response = await deleteProduct(productID);
+        const data = response.data;
+        products.value.splice(itemIndex, 1);
+    } catch (error) {
+        console.log(error);
+    }
+
+    // return data;
+}
+
+const orderProduct = async (productId) => {
+  if (!props.product) {
+    console.error('No product data available.');
+    return;
+  }
+
+  const { title, description } = props.product;
+  console.log('Creating order with:', { productId, title, description });
+  try {
+    await createOrder(productId, title, description);
+    alert('Order placed successfully!');
+    emit('productOrdered', productId);
+  } catch (error) {
+    console.error('Failed to place order:', error.response?.data || error.message);
+  }
+};
 </script>
 
 <template>
@@ -12,7 +61,14 @@ const props = defineProps({
         <h3>{{ product.title }}</h3>
         <p>{{ product.description }}</p>
         <p class="price">${{ product.price.toFixed(2) }}</p>
+        <button v-if="isLoggedIn" @click="removeItem(product._id)" class="delete-btn">
+          Delete
+        </button>
+        <button v-if="!isLoggedIn" @click="orderProduct(product._id)" class="bestel-btn">
+          Bestellen
+        </button>
       </div>
+      
     </div>
 </template>
   
@@ -57,5 +113,31 @@ const props = defineProps({
     color: #904bff;
     font-weight: bold;
   }
+
+  .delete-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  position: absolute;
+}
+
+.delete-btn:hover {
+  background-color: darkred;
+}
+
+.bestel-btn {
+  background-color: greenyellow;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  position: absolute;
+}
+
+.bestel-btn:hover {
+  background-color: green;
+}
 </style>
   
